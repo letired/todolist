@@ -1,0 +1,8 @@
+<% if @task.errors.any? %>
+  $('#newtask').html("<%= j render 'tasks/form', task: @task %>");
+<% else %>
+  var new_task = $("<%= j render 'tasks/show', task: @task %>").hide();
+  $('#tasks').append(new_task);
+  new_task.slideDown();
+  $('#newtask').html("<%= j render 'tasks/form', task: Task.new %>")
+<% end %>

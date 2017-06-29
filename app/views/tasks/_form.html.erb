@@ -1,0 +1,6 @@
+<%= simple_form_for(task, remote: true) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :complete, as: :hidden, input_html: { value: false } %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,9 +1,30 @@
-<h1>My Todo List:</h1>
+<div class="container-fluid">
+  <h1>My Todo List:</h1>
+</div>
+<div class="container">
+  <h4>Add a new task!</h4>
+  <div id="newtask">
+      <%= render 'form', task: @task %>
+  </div>
+  <hr>
+  <div id="tasks">
+    <ul class="list-unstyled">
+      <% if @tasks.blank? %>
+        <p>Add a task!</p>
+      <% else %>
+        <% @tasks.each do |t| %>
+          <%= render 'show',  task: t %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<% @tasks.each do |task| %>
-  <ul>
-    <li>Name: <%= task.name %></li>
-    <li>Description: <%= task.description %></li>
-    <li>Complete? <%= task.complete %></li>
-  </ul>
-<% end %>
+<script>
+  $(document).ready(function(){
+    $('#tasks li').on("click", function(){
+      var id = $(this).attr("data-id");
+      console.log(id);
+    });
+  });
+</script>

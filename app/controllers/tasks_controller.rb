@@ -6,10 +6,17 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.create
-      redirect_to tasks_path
+    if @task.save
+      respond_to do |format|
+        format.html { redirect_to tasks_path }
+        format.js
+      end
     else
-      render 'tasks/index'
+      @tasks = Task.all
+      respond_to do |format|
+        format.html { render :index }
+        format.js
+      end
     end
   end
 
